@@ -7,8 +7,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import MyReservations from "./pages/MyReservations";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
-import ReservationsPage from "./pages/ReservationsPage";
-import MyHotelList from "./pages/MyHotelList";
+import ReservationsPage from "./pages/Reservationspage";
+import MyHotelList from "./pages/Myhotellist";
 import AdminSignup from './pages/AdminSignup';
 
 function App() {
@@ -31,6 +31,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+} 
 
 export default App;
