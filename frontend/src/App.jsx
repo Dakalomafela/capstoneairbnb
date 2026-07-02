@@ -14,7 +14,6 @@ import AdminSignup from './pages/AdminSignup';
 function App() {
   return (
     <BrowserRouter>
-      {/* <NavbarLinks />  REMOVED for now */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/location/:location" element={<LocationPage />} />
@@ -26,11 +25,11 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/reservations" element={<MyReservations />} />
         <Route path="/admin/listings/edit/:id" element={<EditListing />} />
-        <Route path="*" element={<Home />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
+        <Route path="*" element={<Home />} />  {/* THIS MUST BE LAST! */}
       </Routes>
     </BrowserRouter>
   );
-} 
+}
 
 export default App;
