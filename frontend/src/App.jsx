@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LocationPage from "./pages/LocationPage";
 import ListingDetails from "./pages/ListingDetails";
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/location/:location" element={<LocationPage />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
-        <Route path="/my-listings" element={<MyHotelList />} />
+        <Route path="/my-listings" element={} />
         <Route path="/reservations" element={<ReservationsPage />} />
         <Route path="/create-listing" element={<CreateListing />} />
         <Route path="/admin/login" element={<AdminLogin />} />
