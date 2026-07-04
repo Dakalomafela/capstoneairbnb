@@ -116,3 +116,9 @@ app.post('/api/accommodations', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get("/", (req, res) => {
+  res.json({
+    message: "Airbnb Backend API is running 🚀",
+    status: "OK"
+  });
+});
