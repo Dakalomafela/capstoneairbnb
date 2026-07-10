@@ -1,7 +1,9 @@
-﻿export const api = {
-  checkBackend: () => fetch('/api/listings', { method: 'HEAD' })
+﻿import { apiUrl } from '../api';
+
+export const api = {
+  checkBackend: () => fetch(apiUrl('/api/health'), { method: 'GET' })
     .then(res => res.ok)
     .catch(() => false),
-  
-  getListings: () => fetch('/api/listings').then(res => res.json()),
-}
+
+  getListings: () => fetch(apiUrl('/api/accommodations')).then(res => res.json()),
+};
