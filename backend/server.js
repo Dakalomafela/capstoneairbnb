@@ -38,3 +38,10 @@ app.use('/api/reservations', reservationRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+const cors = require('cors');
+
+app.use(cors({
+  origin: ['https://dakaloxm.netlify.app', 'http://localhost:5173'],
+  credentials: true
+}));
