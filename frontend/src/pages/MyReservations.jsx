@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Search, ArrowLeft, Eye, Trash2, LayoutDashboard, Plus } from 'lucide-react';
+import { apiUrl } from '../api';
 
 export default function MyReservations() {
   const [reservations, setReservations] = useState([]);
@@ -16,7 +17,9 @@ export default function MyReservations() {
       return;
     }
 
-    fetch('http://localhost:5000/api/reservations')
+    fetch(apiUrl('/api/reservations'), {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(res => res.json())
       .then(data => {
         const arr = Array.isArray(data) ? data : [];
@@ -49,7 +52,11 @@ export default function MyReservations() {
   const handleDelete = async (id) => {
     if (!confirm('Cancel this reservation?')) return;
     try {
-      await fetch(`http://localhost:5000/api/reservations/${id}`, { method: 'DELETE' });
+      const token = localStorage.getItem('adminToken');
+      await fetch(apiUrl(`/api/reservations/${id}`), {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
     } catch {}
     setReservations(prev => prev.filter(r => r.id !== id));
     setFiltered(prev => prev.filter(r => r.id !== id));

@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, Heart, MapPin } from "lucide-react";
+import { apiUrl } from "../api";
 
 // Helper: safely get first image from any backend format
 const getListingImage = (listing) => {
@@ -74,7 +75,7 @@ export default function LocationPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/accommodations")
+    fetch(apiUrl("/api/accommodations"))
       .then(res => res.json())
       .then(data => {
         // Ensure every listing has an image

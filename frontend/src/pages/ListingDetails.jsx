@@ -7,6 +7,7 @@ import {
   KeyRound, Baby, Cigarette, PawPrint, PartyPopper,
   SprayCan, Wind as WindIcon, AlertTriangle
 } from "lucide-react";
+import { apiUrl } from "../api";
 
 // ─── Safe Text Helper ────────────────────────────────────
 const safeText = (val, fallback = "") => {
@@ -249,7 +250,7 @@ export default function ListingDetails() {
   };
 
   useEffect(() => {
-    fetch(`/api/accommodations/${id}`)
+    fetch(apiUrl(`/api/accommodations/${id}`))
       .then(res => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

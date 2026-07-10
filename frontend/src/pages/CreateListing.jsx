@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { MapPin, Upload, X, Plus, Home, Building, TreePine, Hotel, Warehouse } from "lucide-react";
+import { apiUrl } from "../api";
 
 const propertyTypes = [
   { value: "apartment", label: "Apartment", icon: Building },
@@ -80,7 +81,7 @@ export default function CreateListing() {
     }
 
     try {
-      const res = await fetch("/api/accommodations", {
+      const res = await fetch(apiUrl("/api/accommodations"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

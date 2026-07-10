@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, User, ShieldCheck } from 'lucide-react';
+import { apiUrl } from '../api';
 
 export default function AdminSignup() {
   const [name, setName] = useState('');
@@ -24,10 +25,10 @@ export default function AdminSignup() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/users/register', {
+      const res = await fetch(apiUrl('/api/users/register'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, role: 'admin' })
+        body: JSON.stringify({ username: name, email, password, role: 'admin' })
       });
       const data = await res.json();
       if (data.token) {

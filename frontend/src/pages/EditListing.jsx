@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Save, Trash2 } from "lucide-react";
+import { apiUrl } from "../api";
 
 export default function EditListing() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function EditListing() {
       return;
     }
 
-    fetch(`/api/accommodations/${id}`)
+    fetch(apiUrl(`/api/accommodations/${id}`))
       .then(res => {
         if (!res.ok) throw new Error("Failed to load listing");
         return res.json();
@@ -64,7 +65,7 @@ export default function EditListing() {
 
     const token = localStorage.getItem("adminToken");
     try {
-      const res = await fetch(`/api/accommodations/${id}`, {
+      const res = await fetch(apiUrl(`/api/accommodations/${id}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +92,7 @@ export default function EditListing() {
     if (!confirm("Are you sure you want to delete this listing?")) return;
     const token = localStorage.getItem("adminToken");
     try {
-      const res = await fetch(`/api/accommodations/${id}`, {
+      const res = await fetch(apiUrl(`/api/accommodations/${id}`), {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

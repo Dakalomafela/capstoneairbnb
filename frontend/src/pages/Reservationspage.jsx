@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2, Calendar, User, Home, X } from "lucide-react";
+import { apiUrl } from "../api";
 
 export default function ReservationsPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function ReservationsPage() {
   const fetchReservations = async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("/api/reservations", {
+      const res = await fetch(apiUrl("/api/reservations"), {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -66,7 +67,7 @@ export default function ReservationsPage() {
     if (!window.confirm("Are you sure you want to cancel this reservation?")) return;
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(`/api/reservations/${id}`, {
+      const res = await fetch(apiUrl(`/api/reservations/${id}`), {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

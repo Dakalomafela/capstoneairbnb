@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Edit, Trash2, LogOut, Home, Calendar, Search, LayoutDashboard, ImageIcon } from 'lucide-react';
+import { apiUrl } from '../api';
 
 export default function AdminDashboard() {
   const [listings, setListings] = useState([]);
@@ -16,7 +17,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    fetch('/api/accommodations')
+    fetch(apiUrl('/api/accommodations'))
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch listings');
         return res.json();
@@ -67,7 +68,7 @@ export default function AdminDashboard() {
     if (!confirm('Are you sure you want to delete this listing?')) return;
     const token = localStorage.getItem('adminToken');
     try {
-      const res = await fetch(`/api/accommodations/${id}`, {
+      const res = await fetch(apiUrl(`/api/accommodations/${id}`), {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

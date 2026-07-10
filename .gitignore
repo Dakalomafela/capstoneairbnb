@@ -2,6 +2,10 @@ node_modules/
 .env
 *.log
 .DS_Store
+database.sqlite
+
+# Build output
+dist/
 
 # Local Netlify folder
 .netlify

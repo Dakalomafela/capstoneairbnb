@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Star, Menu, User, Home, Heart } from "lucide-react";
+import { apiUrl } from "../api";
 
 const SafeImage = ({ src, alt, className }) => {
   const [imgSrc, setImgSrc] = useState(src);
@@ -85,7 +86,7 @@ export default function MyHotelList() {
 
     // When your API is fixed, delete the setTimeout above and uncomment:
     /*
-    fetch("/api/accommodations")
+    fetch(apiUrl("/api/accommodations"))
       .then(res => res.json())
       .then(data => {
         const processed = (data || []).map((item) => ({
@@ -115,7 +116,7 @@ export default function MyHotelList() {
 
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this listing?")) return;
-    fetch(`/api/accommodations/${id}`, { method: "DELETE" })
+    fetch(apiUrl(`/api/accommodations/${id}`), { method: "DELETE" })
       .then(() => setListings(prev => prev.filter(l => l.id !== id)))
       .catch(() => alert("Failed to delete. Try again."));
   };

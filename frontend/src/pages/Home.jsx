@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Star, Globe, Search, ChevronDown, MapPin } from 'lucide-react';
 import CityCard from '../components/CityCard';
+import { apiUrl } from '../api';
 
 export default function Home() {
   const [listings, setListings] = useState([]);
@@ -18,7 +19,7 @@ export default function Home() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    fetch('/api/accommodations')
+    fetch(apiUrl('/api/accommodations'))
       .then(res => res.json())
       .then(data => { setListings(data); setLoading(false); })
       .catch(() => setLoading(false));
